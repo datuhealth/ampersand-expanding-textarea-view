@@ -71,7 +71,7 @@ module.exports = AmpersandInputView.extend({
             return;
         }
 
-        this.inputMirror.value = this.inputValue;
+        this.inputMirror.value = this.input.value;
 
         // Scroll top the top for IE8 and lower
         this.inputMirror.scrollTop = 0;
