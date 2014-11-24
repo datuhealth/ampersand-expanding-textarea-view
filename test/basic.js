@@ -1,5 +1,5 @@
 var test = require('tape');
-var InputView = require('../ampersand-input-view');
+var InputView = require('../ampersand-expanding-textarea-view');
 var customTemplate = '<label class="custominput"><span data-hook="label"></span><input><div data-hook="message-container"><p data-hook="message-text"></p></div></label>';
 if (!Function.prototype.bind) Function.prototype.bind = require('function-bind');
 

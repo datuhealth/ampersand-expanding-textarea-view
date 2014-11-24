@@ -5,8 +5,13 @@
   "main": "ampersand-expanding-textarea-view.js",
   "repository": "https://github.com/mike-engel/ampersand-expanding-textarea-view",
   "scripts": {
-    "test": "test"
+    "start": "run-browser test/index.js",
+    "test": "browserify test/index.js | tape-run | tap-spec"
   },
+  "bugs": {
+    "url": "https://github.com/ampersandjs/ampersand-input-view/issues"
+  },
+  "homepage": "https://github.com/mike-engel/ampersand-expanding-textarea-view",
   "keywords": [
     "Ampersand",
     "textarea",
@@ -17,5 +22,16 @@
   "license": "MIT",
   "dependencies": {
     "ampersand-input-view": "^3.1.0"
+  },
+  "devDependencies": {
+    "browserify": "^5.10.1",
+    "function-bind": "^1.0.0",
+    "jshint": "^2.5.6",
+    "phantomjs": "^1.9.7-15",
+    "precommit-hook": "^1.0.7",
+    "run-browser": "^1.3.1",
+    "tap-spec": "^0.2.1",
+    "tape": "^2.14.0",
+    "tape-run": "^0.3.0"
   }
 }
