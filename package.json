@@ -9,7 +9,7 @@
     "test": "browserify test/index.js | tape-run | tap-spec"
   },
   "bugs": {
-    "url": "https://github.com/ampersandjs/ampersand-input-view/issues"
+    "url": "https://github.com/mike-engel/ampersand-expanding-textarea-view/issues"
   },
   "homepage": "https://github.com/mike-engel/ampersand-expanding-textarea-view",
   "keywords": [
