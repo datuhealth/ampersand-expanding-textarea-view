@@ -4,19 +4,17 @@ module.exports = AmpersandInputView.extend({
     template: [
         '<label>',
             '<span data-hook="label"></span>',
-            '<textarea class="form-input expanding-textarea expanding-textarea-primary"></textarea>',
-            '<textarea class="form-input expanding-textarea expanding-textarea-mirror" tabindex="-1" style="position:absolute;top:-999px;left:0;right:auto;bottom:auto;border:0;word-wrap:break-word;height:0 !important;min-height:0 !important;overflow:hidden;transition:none;-webkit-transition:none;-moz-transition:none;"></textarea>',
+            '<textarea class="form-input" data-hook="input-primary"></textarea>',
+            '<textarea class="form-input" data-hook="input-mirror" tabindex="-1" style="position:absolute;top:-999px;left:0;right:auto;bottom:auto;border:0;word-wrap:break-word;height:0 !important;min-height:0 !important;overflow:hidden;transition:none;-webkit-transition:none;-moz-transition:none;"></textarea>',
             '<div data-hook="message-container" class="message message-below message-error">',
                 '<p data-hook="message-text"></p>',
             '</div>',
         '</label>'
     ].join( '' ),
     render: function() {
-        var self = this;
-
         this.renderWithTemplate();
-        this.input = this.query('.expanding-textarea-primary');
-        this.inputMirror = this.query( '.expanding-textarea-mirror' );
+        this.input = this.queryByHook( '.input-primary' );
+        this.inputMirror = this.queryByHook( '.input-mirror' );
         // switches out input for textarea if that's what we want
         this.handleTypeChange();
         this.initInputBindings();
@@ -28,13 +26,13 @@ module.exports = AmpersandInputView.extend({
         // to get the propert scrollHeight
         this.parent.el.addEventListener( 'DOMNodeInserted', function() {
             // Setup the textarea mirror
-            self.initTextareaMirror();
-            self.resizeTextarea();
-        });
+            this.initTextareaMirror();
+            this.resizeTextarea();
+        }.bind( this ));
     },
     events: {
-        'keyup textarea': 'resizeTextarea',
-        'input textarea': 'resizeTextarea'
+        'keyup [data-hook="input-primary"]': 'resizeTextarea',
+        'input [data-hook="input-primary"]': 'resizeTextarea'
     },
     initTextareaMirror: function() {
         var typographyStyles = [
