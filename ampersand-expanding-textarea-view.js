@@ -13,8 +13,8 @@ module.exports = AmpersandInputView.extend({
     ].join( '' ),
     render: function() {
         this.renderWithTemplate();
-        this.input = this.queryByHook( '.input-primary' );
-        this.inputMirror = this.queryByHook( '.input-mirror' );
+        this.input = this.queryByHook( 'input-primary' );
+        this.inputMirror = this.queryByHook( 'input-mirror' );
         // switches out input for textarea if that's what we want
         this.handleTypeChange();
         this.initInputBindings();

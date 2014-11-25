@@ -1,6 +1,6 @@
 {
   "name": "ampersand-expanding-textarea-view",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A small ampersand.js tool to create an expanding textarea view for an ampersand-form-view",
   "main": "ampersand-expanding-textarea-view.js",
   "repository": "https://github.com/mike-engel/ampersand-expanding-textarea-view",
