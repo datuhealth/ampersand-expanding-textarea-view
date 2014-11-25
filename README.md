@@ -47,7 +47,7 @@ module.exports = FormView.extend({
 
 ### extend `AmpersandInputView.extend({ })`
 
-Since this view is based on [ampersand-state](http://ampersandjs.com/docs#ampersand-state) it can be extended in the same way. 
+Since this view is based on [ampersand-state](http://ampersandjs.com/docs#ampersand-state) it can be extended in the same way.
 
 To create an **InputView** class of your own, you extend **AmpersandInputView** and provide instance properties and options for your class. Typically here you will pass any properties (`props`, `session` and `derived`) of your state class, and any instance methods to be attached to instances of your class.
 
@@ -63,7 +63,7 @@ var MyCustomInput = AmpersandInputView.extend({
         AmpersandInputView.prototype.initialize.call(apply, arguments);
 
         // do whatever else you need to do on init here
-    } 
+    }
 });
 ```
 
@@ -191,7 +191,7 @@ var VerifiedAddressInput = AmpersandInput.extend({
             }
         },
         // you may also want to change what
-        // deterines if this field should be 
+        // deterines if this field should be
         // considerd valid. In this case, whether
         // it has a validated address
         valid: {
@@ -233,11 +233,11 @@ var myInput = new ExpandingTextareaView({
                 return "A tweet can be no more than 140 characters";
             }
         }
-    ] 
+    ]
 });
 ```
 
-*note:* you can still do `required: true` and pass tests. If you do it will check if it's not empty first and show the `requiredMessage` error if empty. Note that the input will only show one error per field at a time. This is to minimize annoyance. We don't want to show "this field is required" and every other error if they just left it empty. We just show the first one that fails, then when they go to correct it, it will change as they type to the other error or the error will disappear once valid. 
+*note:* you can still do `required: true` and pass tests. If you do it will check if it's not empty first and show the `requiredMessage` error if empty. Note that the input will only show one error per field at a time. This is to minimize annoyance. We don't want to show "this field is required" and every other error if they just left it empty. We just show the first one that fails, then when they go to correct it, it will change as they type to the other error or the error will disappear once valid.
 
 
 ### setValue `expandingTextareaView.setValue([value], [skipValidation|bool])`
@@ -249,7 +249,7 @@ Passing `true` as second argument will skip validation. This is mainly for inter
 
 ### reset `expandingTextareaView.reset()`
 
-Set value to back original value. If you passed a `value` when creating the view it will reset to that, otherwise to `''`. 
+Set value to back original value. If you passed a `value` when creating the view it will reset to that, otherwise to `''`.
 
 
 ### clear `expandingTextareaView.clear()`
@@ -259,6 +259,8 @@ Sets value to `''` no matter what previous values were.
 
 ## changelog
 
+- 0.2.1 - Pre-release. Fixes a bug where this.input was undefined.
+- 0.2.0 - Pre-release. Works as intended, but tests are failing (haven't been written)
 - 0.1.0 - Pre-release. Still some bugs, but mainly works.
 
 ## credits
@@ -268,4 +270,3 @@ Created by [@beardfury](http://twitter.com/beardfury).
 ## license
 
 MIT
-
