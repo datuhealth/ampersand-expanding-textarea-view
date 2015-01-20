@@ -24,11 +24,18 @@ module.exports = AmpersandInputView.extend({
         // Set the initial height of the textarea
         // This needs to run after the view has been rendered to the DOM
         // to get the propert scrollHeight
-        this.parent.el.addEventListener( 'DOMNodeInserted', function() {
-            // Setup the textarea mirror
-            this.initTextareaMirror();
-            this.resizeTextarea();
-        }.bind( this ));
+        if ( this.parent ) {
+            this.parent.el.addEventListener( 'DOMNodeInserted', function() {
+                // Setup the textarea mirror
+                this.initTextareaMirror();
+                this.resizeTextarea();
+            }.bind( this ));
+        } else {
+            window.setTimeout(function() {
+                this.initTextareaMirror();
+                this.resizeTextarea();
+            }.bind( this ), 250);
+        }
     },
     events: {
         'keyup [data-hook="input-primary"]': 'resizeTextarea',

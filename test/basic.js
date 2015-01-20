@@ -1,6 +1,7 @@
 var test = require('tape');
 var InputView = require('../ampersand-expanding-textarea-view');
-var customTemplate = '<label class="custominput"><span data-hook="label"></span><input><div data-hook="message-container"><p data-hook="message-text"></p></div></label>';
+var customTemplate = '<label class="custominput"><span data-hook="label"></span><textarea data-hook="input-mirror"></textarea><div contenteditable="true" data-hook="input-primary"></div><div data-hook="message-container"><p data-hook="message-text"></p></div></label>';
+
 if (!Function.prototype.bind) Function.prototype.bind = require('function-bind');
 
 function isHidden(el) {
@@ -12,11 +13,13 @@ function hasClass(el, klass) {
 }
 
 test('basic initialization', function (t) {
-    var input = new InputView({ name: 'title' });
+    var input = new InputView({
+            name: 'title'
+        });
     input.render();
     t.equal(input.el.tagName, 'LABEL');
-    t.equal(input.el.querySelectorAll('input').length, 1);
-    t.equal(input.el.querySelector('input').getAttribute('name'), 'title');
+    t.equal(input.el.querySelectorAll('textarea').length, 2);
+    t.equal(input.el.querySelector('textarea').getAttribute('name'), 'title');
     t.end();
 });
 
@@ -28,7 +31,7 @@ test('initialize with value', function (t) {
 
     input.render();
 
-    t.equal(input.el.querySelector('input').value, 'Once upon a time');
+    t.equal(input.el.querySelector('textarea').value, 'Once upon a time');
     t.end();
 });
 
@@ -122,7 +125,7 @@ test('initalize with a value of `0`', function(t) {
 
     input.render();
 
-    t.equal(parseFloat(input.el.querySelector('input').value), 0);
+    t.equal(parseFloat(input.el.querySelector('textarea').value), 0);
     t.end();
 });
 
@@ -151,7 +154,7 @@ test('Tests with required true and false', function (t) {
     inputs.forEach(function (input) {
         input.render();
 
-        var inputElement = input.el.querySelector('input');
+        var inputElement = input.el.querySelector('textarea');
         var messageContainer = input.el.querySelector('[data-hook=message-container]');
 
         //"Trigger change events"
@@ -217,7 +220,6 @@ test('allow setting root element class', function (t) {
     t.end();
 });
 
-
 test('validityClass is present on submit even if unchanged', function (t) {
     [
         new InputView({
@@ -232,7 +234,7 @@ test('validityClass is present on submit even if unchanged', function (t) {
     ].forEach(function (input) {
         input.render();
 
-        var inputElement = input.el.querySelector('input');
+        var inputElement = input.el.querySelector('textarea');
         var messageContainer = input.el.querySelector('[data-hook=message-container]');
 
         // "Trigger submit on the input"
@@ -262,7 +264,7 @@ test('Required views display message and class after edited', function (t) {
     ].forEach(function (input) {
         input.render();
 
-        var inputElement = input.el.querySelector('input');
+        var inputElement = input.el.querySelector('textarea');
         var messageContainer = input.el.querySelector('[data-hook=message-container]');
 
         inputElement.value = 'Required string';
@@ -305,7 +307,7 @@ test('value reports changed in cases where it shouldnt', function (t) {
     ].forEach(function (input) {
         input.render();
 
-        var inputElement = input.el.querySelector('input');
+        var inputElement = input.el.querySelector('textarea');
 
         // Setting the input value directly and trigger input changed
         inputElement.value = '0';
@@ -332,4 +334,26 @@ test('value reports changed in cases where it shouldnt', function (t) {
     });
 
     t.end();
+});
+
+test('textarea grows in height as the text wraps', function (t) {
+    var input = new InputView(),
+        textarea,
+        initialHeight,
+        singleLineHeight;
+
+    input.render();
+
+    textarea = input.el.querySelector('textarea');
+
+    initialHeight = textarea.style.height;
+    input.setValue('Test');
+
+    window.setTimeout(function () {
+        singleLineHeight = textarea.style.height;
+
+        t.equal(initialHeight, '', 'The initial height should not be set');
+        t.notEqual(initialHeight, singleLineHeight, 'Input height changes when new text is entered');
+        t.end();
+    }, 900);
 });
