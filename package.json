@@ -1,6 +1,6 @@
 {
   "name": "ampersand-expanding-textarea-view",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A small ampersand.js tool to create an expanding textarea view for an ampersand-form-view",
   "main": "ampersand-expanding-textarea-view.js",
   "repository": "https://github.com/datuhealth/ampersand-expanding-textarea-view",
@@ -19,7 +19,7 @@
     "expanding-textarea"
   ],
   "author": "Mike Engel",
-  "license": "MIT",
+  "license": "Apache 2.0",
   "dependencies": {
     "ampersand-input-view": "^3.1.0"
   },
