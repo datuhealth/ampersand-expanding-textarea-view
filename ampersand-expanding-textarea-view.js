@@ -20,21 +20,26 @@ module.exports = AmpersandInputView.extend({
         this.initInputBindings();
         // Skip validation on initial setValue
         // if the field is not required
-        this.setValue(this.inputValue, !this.required);
+        this.setValue( this.inputValue, !this.required );
         // Set the initial height of the textarea
         // This needs to run after the view has been rendered to the DOM
         // to get the propert scrollHeight
-        if ( this.parent ) {
-            this.parent.el.addEventListener( 'DOMNodeInserted', function() {
-                // Setup the textarea mirror
+        var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+
+        if ( this.parent && MutationObserver ) {
+            var observer = new MutationObserver(function() {
                 this.initTextareaMirror();
                 this.resizeTextarea();
             }.bind( this ));
+
+            observer.observe( this.parent.el, {
+                childList: true
+            });
         } else {
             window.setTimeout(function() {
                 this.initTextareaMirror();
                 this.resizeTextarea();
-            }.bind( this ), 250);
+            }.bind( this ), 250 );
         }
     },
     events: {
@@ -57,9 +62,11 @@ module.exports = AmpersandInputView.extend({
 
         // test that line-height can be accurately copied.
         this.inputMirror.style.lineHeight = '99px';
-        if ( window.getComputedStyle( this.inputMirror ).lineHeight === '99px') {
-            typographyStyles.push('lineHeight');
+
+        if ( window.getComputedStyle( this.inputMirror ).lineHeight === '99px' ) {
+            typographyStyles.push( 'lineHeight' );
         }
+
         this.inputMirror.style.lineHeight = '';
 
         for ( var i = 0; i < typographyStyles.length; i++ ) {
@@ -69,12 +76,6 @@ module.exports = AmpersandInputView.extend({
     resizeTextarea: function() {
         var elScrollHeight,
             elComputedStyle = window.getComputedStyle( this.input );
-
-        // Exit early if there's no text
-        // This may be an issue if a user does a select-all and delete
-        if ( !this.inputValue.length ) {
-            return;
-        }
 
         this.inputMirror.value = this.input.value;
 
