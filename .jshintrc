@@ -1,6 +1,5 @@
 {
   "browserify": true,
-
   "expr": true,
   "curly": false,
   "latedef": true,
