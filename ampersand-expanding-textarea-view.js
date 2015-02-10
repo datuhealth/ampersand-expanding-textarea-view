@@ -5,7 +5,7 @@ module.exports = AmpersandInputView.extend({
         '<label>',
             '<span data-hook="label"></span>',
             '<textarea class="form-input" data-hook="input-primary"></textarea>',
-            '<textarea class="form-input" data-hook="input-mirror" tabindex="-1" style="position:absolute;top:-999px;left:0;right:auto;bottom:auto;border:0;word-wrap:break-word;height:0 !important;min-height:0 !important;overflow:hidden;transition:none;-webkit-transition:none;-moz-transition:none;"></textarea>',
+            '<textarea class="form-input" data-hook="input-mirror" tabindex="-1" style="position:absolute;top:-9999px;left:0;right:auto;bottom:auto;border:0;word-wrap:break-word;height:0 !important;min-height:0 !important;overflow:hidden;transition:none;-webkit-transition:none;-moz-transition:none;"></textarea>',
             '<div data-hook="message-container" class="message message-below message-error">',
                 '<p data-hook="message-text"></p>',
             '</div>',
