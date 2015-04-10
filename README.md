@@ -256,13 +256,6 @@ Set value to back original value. If you passed a `value` when creating the view
 
 Sets value to `''` no matter what previous values were.
 
-
-## changelog
-
-- 0.2.1 - Pre-release. Fixes a bug where this.input was undefined.
-- 0.2.0 - Pre-release. Works as intended, but tests are failing (haven't been written)
-- 0.1.0 - Pre-release. Still some bugs, but mainly works.
-
 ## credits
 
 Created by [@beardfury](http://twitter.com/beardfury).

@@ -1,6 +1,16 @@
-var test = require('tape');
-var InputView = require('../ampersand-expanding-textarea-view');
-var customTemplate = '<label class="custominput"><span data-hook="label"></span><textarea data-hook="input-mirror"></textarea><div contenteditable="true" data-hook="input-primary"></div><div data-hook="message-container"><p data-hook="message-text"></p></div></label>';
+var test = require('tape'),
+    suite = require('tape-suite'),
+    ViewConventions = require( 'ampersand-view-conventions' ),
+    InputView = require('../ampersand-expanding-textarea-view'),
+    customTemplate = '<label class="custominput"><span data-hook="label"></span><textarea data-hook="input-mirror"></textarea><div contenteditable="true" data-hook="input-primary"></div><div data-hook="message-container"><p data-hook="message-text"></p></div></label>',
+    fieldOptions = {
+        name: 'test',
+        type: 'text',
+        placeholder: 'Test',
+        value: ''
+    };
+
+ViewConventions.view( suite.tape, InputView, fieldOptions );
 
 if (!Function.prototype.bind) Function.prototype.bind = require('function-bind');
 
