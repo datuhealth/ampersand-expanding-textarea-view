@@ -6,7 +6,7 @@
   "repository": "https://github.com/datuhealth/ampersand-expanding-textarea-view",
   "scripts": {
     "start": "run-browser test/index.js",
-    "test": "browserify test/index.js | tape-run | tap-spec"
+    "test": "browserify test/index.js | tape-run -b phantom | tap-spec"
   },
   "bugs": {
     "url": "https://github.com/datuhealth/ampersand-expanding-textarea-view/issues"
