@@ -1,7 +1,7 @@
 language: node_js
 node_js:
 - node
-- 0.10.40
+- 4.x
 - iojs
 script: npm test
 sudo: false
