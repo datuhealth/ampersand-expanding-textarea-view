@@ -2,7 +2,6 @@ var test = require('tape'),
     suite = require('tape-suite'),
     ViewConventions = require( 'ampersand-view-conventions' ),
     InputView = require('../ampersand-expanding-textarea-view'),
-    customTemplate = '<label class="custominput"><span data-hook="label"></span><textarea data-hook="input-mirror"></textarea><div contenteditable="true" data-hook="input-primary"></div><div data-hook="message-container"><p data-hook="message-text"></p></div></label>',
     fieldOptions = {
         name: 'test',
         type: 'text',
@@ -13,14 +12,6 @@ var test = require('tape'),
 ViewConventions.view( suite.tape, InputView, fieldOptions );
 
 if (!Function.prototype.bind) Function.prototype.bind = require('function-bind');
-
-function isHidden(el) {
-    return el.style.display === 'none';
-}
-
-function hasClass(el, klass) {
-    return el.classList.contains(klass);
-}
 
 test('textarea grows in height as the text wraps', function (t) {
     var input = new InputView(),
