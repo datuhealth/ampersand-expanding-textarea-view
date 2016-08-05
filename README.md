@@ -1,3 +1,7 @@
+# UNMAINTAINED
+
+This project is no longer being maintained. It's suggested that an alternative be used instead.
+
 # ampersand-expanding-textarea-view
 
 A view module for rendering a textarea that expands in height to fit the text within it. Works well with [ampersand-form-view](https://github.com/AmpersandJS/ampersand-form-view).
